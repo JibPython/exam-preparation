@@ -1,23 +1,13 @@
-import Image from "next/image";
-import { signIn } from "@/auth";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>Sign in</h1>
-
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+      <main className="flex flex-1 w-full max-w-3xl flex-col items-center py-32 px-16 bg-white dark:bg-black sm:items-start">
         <div>
-          <form
-            className="border border-1"
-            action={async () => {
-              "use server";
-              await signIn("google");
-            }}
-          >
-            <button type="submit">Google Signin</button>
-          </form>
+          <p>Welcome to the landing page!</p>{" "}
         </div>
+        <Link href="/login">Go to login page</Link>
       </main>
     </div>
   );
