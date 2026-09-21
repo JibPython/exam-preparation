@@ -14,12 +14,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       const isLoggedIn = !!auth?.user;
       const pathname = request.nextUrl.pathname;
 
-      // Public routes
       if (pathname === "/" || pathname === "/login") {
         return true;
       }
 
-      // Everything else requires authentication
       return isLoggedIn;
     },
   },
