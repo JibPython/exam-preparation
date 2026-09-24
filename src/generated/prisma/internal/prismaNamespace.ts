@@ -1198,7 +1198,8 @@ export type AuthenticatorScalarFieldEnum = (typeof AuthenticatorScalarFieldEnum)
 
 export const CourseScalarFieldEnum = {
   id: 'id',
-  creatorId: 'creatorId'
+  creatorId: 'creatorId',
+  name: 'name'
 } as const
 
 export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]

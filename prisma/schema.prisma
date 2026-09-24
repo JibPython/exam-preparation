@@ -86,6 +86,7 @@ model Course {
     id Int @id @default(autoincrement())
     creator User @relation(fields: [creatorId], references: [id])
     creatorId String
+    name String
     topics Topic[]
   }
 
