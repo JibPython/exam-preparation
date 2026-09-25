@@ -41,3 +41,60 @@ export async function deleteCourse(id: number) {
     where: { id: id, creatorId: session.userId },
   });
 }
+
+// SINGLE COURSE PAGE
+
+export const getCourseName = cache(async (id: number) => {
+  const session = await verifySession();
+
+  return prisma.course.findFirst({
+    where: { id: id, creatorId: session.userId },
+    select: { name: true },
+  });
+});
+
+export const getTopics = cache(async (courseId: number) => {
+  const session = await verifySession();
+
+  return prisma.topic.findMany({
+    where: { courseId: courseId, course: { creatorId: session.userId } },
+  });
+});
+
+export async function createTopic(name: string, courseId: number) {
+  const session = await verifySession();
+
+  const course = await prisma.course.findFirst({
+    where: {
+      id: courseId,
+      creatorId: session.userId,
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  if (!course) {
+    throw new Error("Course not found");
+  }
+
+  return prisma.topic.create({
+    data: {
+      name,
+      courseId: course.id,
+    },
+  });
+}
+
+export async function deleteTopic(topicId: number) {
+  const session = await verifySession();
+
+  return prisma.topic.deleteMany({
+    where: {
+      id: topicId,
+      course: {
+        creatorId: session.userId,
+      },
+    },
+  });
+}

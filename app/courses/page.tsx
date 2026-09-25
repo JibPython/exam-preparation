@@ -1,5 +1,7 @@
 import { getCourses, createCourse, deleteCourse } from "@/lib/dal";
 import { revalidatePath } from "next/cache";
+import Link from "next/link";
+
 export default async function Courses() {
   const courses = await getCourses();
 
@@ -7,6 +9,10 @@ export default async function Courses() {
     "use server";
 
     const newCourse: string = formData.get("course-name") as string;
+
+    if (typeof newCourse !== "string" || !newCourse.trim()) {
+      throw new Error("Invalid course name");
+    }
 
     await createCourse(newCourse);
 
@@ -28,7 +34,9 @@ export default async function Courses() {
         <div className="flex flex-col gap-12">
           {courses.map((course) => (
             <div key={course.id}>
-              {course.name}
+              <Link href={`/courses/${encodeURIComponent(course.id)}`}>
+                {course.name}
+              </Link>
               <form>
                 <button
                   className="text-red-400"
