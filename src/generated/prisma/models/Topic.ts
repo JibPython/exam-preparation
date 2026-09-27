@@ -40,18 +40,21 @@ export type TopicMinAggregateOutputType = {
   id: number | null
   courseId: number | null
   name: string | null
+  generationStatus: $Enums.GenerationStatus | null
 }
 
 export type TopicMaxAggregateOutputType = {
   id: number | null
   courseId: number | null
   name: string | null
+  generationStatus: $Enums.GenerationStatus | null
 }
 
 export type TopicCountAggregateOutputType = {
   id: number
   courseId: number
   name: number
+  generationStatus: number
   _all: number
 }
 
@@ -70,18 +73,21 @@ export type TopicMinAggregateInputType = {
   id?: true
   courseId?: true
   name?: true
+  generationStatus?: true
 }
 
 export type TopicMaxAggregateInputType = {
   id?: true
   courseId?: true
   name?: true
+  generationStatus?: true
 }
 
 export type TopicCountAggregateInputType = {
   id?: true
   courseId?: true
   name?: true
+  generationStatus?: true
   _all?: true
 }
 
@@ -175,6 +181,7 @@ export type TopicGroupByOutputType = {
   id: number
   courseId: number
   name: string
+  generationStatus: $Enums.GenerationStatus
   _count: TopicCountAggregateOutputType | null
   _avg: TopicAvgAggregateOutputType | null
   _sum: TopicSumAggregateOutputType | null
@@ -204,6 +211,7 @@ export type TopicWhereInput = {
   id?: Prisma.IntFilter<"Topic"> | number
   courseId?: Prisma.IntFilter<"Topic"> | number
   name?: Prisma.StringFilter<"Topic"> | string
+  generationStatus?: Prisma.EnumGenerationStatusFilter<"Topic"> | $Enums.GenerationStatus
   course?: Prisma.XOR<Prisma.CourseScalarRelationFilter, Prisma.CourseWhereInput>
   sources?: Prisma.SourceListRelationFilter
   notes?: Prisma.XOR<Prisma.GeneratedNoteNullableScalarRelationFilter, Prisma.GeneratedNoteWhereInput> | null
@@ -213,6 +221,7 @@ export type TopicOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  generationStatus?: Prisma.SortOrder
   course?: Prisma.CourseOrderByWithRelationInput
   sources?: Prisma.SourceOrderByRelationAggregateInput
   notes?: Prisma.GeneratedNoteOrderByWithRelationInput
@@ -225,6 +234,7 @@ export type TopicWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TopicWhereInput | Prisma.TopicWhereInput[]
   courseId?: Prisma.IntFilter<"Topic"> | number
   name?: Prisma.StringFilter<"Topic"> | string
+  generationStatus?: Prisma.EnumGenerationStatusFilter<"Topic"> | $Enums.GenerationStatus
   course?: Prisma.XOR<Prisma.CourseScalarRelationFilter, Prisma.CourseWhereInput>
   sources?: Prisma.SourceListRelationFilter
   notes?: Prisma.XOR<Prisma.GeneratedNoteNullableScalarRelationFilter, Prisma.GeneratedNoteWhereInput> | null
@@ -234,6 +244,7 @@ export type TopicOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  generationStatus?: Prisma.SortOrder
   _count?: Prisma.TopicCountOrderByAggregateInput
   _avg?: Prisma.TopicAvgOrderByAggregateInput
   _max?: Prisma.TopicMaxOrderByAggregateInput
@@ -248,10 +259,12 @@ export type TopicScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Topic"> | number
   courseId?: Prisma.IntWithAggregatesFilter<"Topic"> | number
   name?: Prisma.StringWithAggregatesFilter<"Topic"> | string
+  generationStatus?: Prisma.EnumGenerationStatusWithAggregatesFilter<"Topic"> | $Enums.GenerationStatus
 }
 
 export type TopicCreateInput = {
   name: string
+  generationStatus?: $Enums.GenerationStatus
   course: Prisma.CourseCreateNestedOneWithoutTopicsInput
   sources?: Prisma.SourceCreateNestedManyWithoutTopicInput
   notes?: Prisma.GeneratedNoteCreateNestedOneWithoutTopicInput
@@ -261,12 +274,14 @@ export type TopicUncheckedCreateInput = {
   id?: number
   courseId: number
   name: string
+  generationStatus?: $Enums.GenerationStatus
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutTopicInput
   notes?: Prisma.GeneratedNoteUncheckedCreateNestedOneWithoutTopicInput
 }
 
 export type TopicUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
   course?: Prisma.CourseUpdateOneRequiredWithoutTopicsNestedInput
   sources?: Prisma.SourceUpdateManyWithoutTopicNestedInput
   notes?: Prisma.GeneratedNoteUpdateOneWithoutTopicNestedInput
@@ -276,6 +291,7 @@ export type TopicUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   courseId?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
   sources?: Prisma.SourceUncheckedUpdateManyWithoutTopicNestedInput
   notes?: Prisma.GeneratedNoteUncheckedUpdateOneWithoutTopicNestedInput
 }
@@ -284,16 +300,19 @@ export type TopicCreateManyInput = {
   id?: number
   courseId: number
   name: string
+  generationStatus?: $Enums.GenerationStatus
 }
 
 export type TopicUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
 }
 
 export type TopicUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   courseId?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
 }
 
 export type TopicListRelationFilter = {
@@ -310,6 +329,7 @@ export type TopicCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  generationStatus?: Prisma.SortOrder
 }
 
 export type TopicAvgOrderByAggregateInput = {
@@ -321,12 +341,14 @@ export type TopicMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  generationStatus?: Prisma.SortOrder
 }
 
 export type TopicMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  generationStatus?: Prisma.SortOrder
 }
 
 export type TopicSumOrderByAggregateInput = {
@@ -381,6 +403,10 @@ export type TopicUncheckedUpdateManyWithoutCourseNestedInput = {
   deleteMany?: Prisma.TopicScalarWhereInput | Prisma.TopicScalarWhereInput[]
 }
 
+export type EnumGenerationStatusFieldUpdateOperationsInput = {
+  set?: $Enums.GenerationStatus
+}
+
 export type TopicCreateNestedOneWithoutSourcesInput = {
   create?: Prisma.XOR<Prisma.TopicCreateWithoutSourcesInput, Prisma.TopicUncheckedCreateWithoutSourcesInput>
   connectOrCreate?: Prisma.TopicCreateOrConnectWithoutSourcesInput
@@ -411,6 +437,7 @@ export type TopicUpdateOneRequiredWithoutNotesNestedInput = {
 
 export type TopicCreateWithoutCourseInput = {
   name: string
+  generationStatus?: $Enums.GenerationStatus
   sources?: Prisma.SourceCreateNestedManyWithoutTopicInput
   notes?: Prisma.GeneratedNoteCreateNestedOneWithoutTopicInput
 }
@@ -418,6 +445,7 @@ export type TopicCreateWithoutCourseInput = {
 export type TopicUncheckedCreateWithoutCourseInput = {
   id?: number
   name: string
+  generationStatus?: $Enums.GenerationStatus
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutTopicInput
   notes?: Prisma.GeneratedNoteUncheckedCreateNestedOneWithoutTopicInput
 }
@@ -455,10 +483,12 @@ export type TopicScalarWhereInput = {
   id?: Prisma.IntFilter<"Topic"> | number
   courseId?: Prisma.IntFilter<"Topic"> | number
   name?: Prisma.StringFilter<"Topic"> | string
+  generationStatus?: Prisma.EnumGenerationStatusFilter<"Topic"> | $Enums.GenerationStatus
 }
 
 export type TopicCreateWithoutSourcesInput = {
   name: string
+  generationStatus?: $Enums.GenerationStatus
   course: Prisma.CourseCreateNestedOneWithoutTopicsInput
   notes?: Prisma.GeneratedNoteCreateNestedOneWithoutTopicInput
 }
@@ -467,6 +497,7 @@ export type TopicUncheckedCreateWithoutSourcesInput = {
   id?: number
   courseId: number
   name: string
+  generationStatus?: $Enums.GenerationStatus
   notes?: Prisma.GeneratedNoteUncheckedCreateNestedOneWithoutTopicInput
 }
 
@@ -488,6 +519,7 @@ export type TopicUpdateToOneWithWhereWithoutSourcesInput = {
 
 export type TopicUpdateWithoutSourcesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
   course?: Prisma.CourseUpdateOneRequiredWithoutTopicsNestedInput
   notes?: Prisma.GeneratedNoteUpdateOneWithoutTopicNestedInput
 }
@@ -496,11 +528,13 @@ export type TopicUncheckedUpdateWithoutSourcesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   courseId?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
   notes?: Prisma.GeneratedNoteUncheckedUpdateOneWithoutTopicNestedInput
 }
 
 export type TopicCreateWithoutNotesInput = {
   name: string
+  generationStatus?: $Enums.GenerationStatus
   course: Prisma.CourseCreateNestedOneWithoutTopicsInput
   sources?: Prisma.SourceCreateNestedManyWithoutTopicInput
 }
@@ -509,6 +543,7 @@ export type TopicUncheckedCreateWithoutNotesInput = {
   id?: number
   courseId: number
   name: string
+  generationStatus?: $Enums.GenerationStatus
   sources?: Prisma.SourceUncheckedCreateNestedManyWithoutTopicInput
 }
 
@@ -530,6 +565,7 @@ export type TopicUpdateToOneWithWhereWithoutNotesInput = {
 
 export type TopicUpdateWithoutNotesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
   course?: Prisma.CourseUpdateOneRequiredWithoutTopicsNestedInput
   sources?: Prisma.SourceUpdateManyWithoutTopicNestedInput
 }
@@ -538,16 +574,19 @@ export type TopicUncheckedUpdateWithoutNotesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   courseId?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
   sources?: Prisma.SourceUncheckedUpdateManyWithoutTopicNestedInput
 }
 
 export type TopicCreateManyCourseInput = {
   id?: number
   name: string
+  generationStatus?: $Enums.GenerationStatus
 }
 
 export type TopicUpdateWithoutCourseInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
   sources?: Prisma.SourceUpdateManyWithoutTopicNestedInput
   notes?: Prisma.GeneratedNoteUpdateOneWithoutTopicNestedInput
 }
@@ -555,6 +594,7 @@ export type TopicUpdateWithoutCourseInput = {
 export type TopicUncheckedUpdateWithoutCourseInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
   sources?: Prisma.SourceUncheckedUpdateManyWithoutTopicNestedInput
   notes?: Prisma.GeneratedNoteUncheckedUpdateOneWithoutTopicNestedInput
 }
@@ -562,6 +602,7 @@ export type TopicUncheckedUpdateWithoutCourseInput = {
 export type TopicUncheckedUpdateManyWithoutCourseInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  generationStatus?: Prisma.EnumGenerationStatusFieldUpdateOperationsInput | $Enums.GenerationStatus
 }
 
 
@@ -599,6 +640,7 @@ export type TopicSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   id?: boolean
   courseId?: boolean
   name?: boolean
+  generationStatus?: boolean
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
   sources?: boolean | Prisma.Topic$sourcesArgs<ExtArgs>
   notes?: boolean | Prisma.Topic$notesArgs<ExtArgs>
@@ -609,6 +651,7 @@ export type TopicSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   courseId?: boolean
   name?: boolean
+  generationStatus?: boolean
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["topic"]>
 
@@ -616,6 +659,7 @@ export type TopicSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   courseId?: boolean
   name?: boolean
+  generationStatus?: boolean
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["topic"]>
 
@@ -623,9 +667,10 @@ export type TopicSelectScalar = {
   id?: boolean
   courseId?: boolean
   name?: boolean
+  generationStatus?: boolean
 }
 
-export type TopicOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "courseId" | "name", ExtArgs["result"]["topic"]>
+export type TopicOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "courseId" | "name" | "generationStatus", ExtArgs["result"]["topic"]>
 export type TopicInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
   sources?: boolean | Prisma.Topic$sourcesArgs<ExtArgs>
@@ -650,6 +695,7 @@ export type $TopicPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     id: number
     courseId: number
     name: string
+    generationStatus: $Enums.GenerationStatus
   }, ExtArgs["result"]["topic"]>
   composites: {}
 }
@@ -1079,6 +1125,7 @@ export interface TopicFieldRefs {
   readonly id: Prisma.FieldRef<"Topic", 'Int'>
   readonly courseId: Prisma.FieldRef<"Topic", 'Int'>
   readonly name: Prisma.FieldRef<"Topic", 'String'>
+  readonly generationStatus: Prisma.FieldRef<"Topic", 'GenerationStatus'>
 }
     
 

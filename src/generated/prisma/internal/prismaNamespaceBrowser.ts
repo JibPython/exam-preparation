@@ -156,7 +156,8 @@ export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof 
 export const TopicScalarFieldEnum = {
   id: 'id',
   courseId: 'courseId',
-  name: 'name'
+  name: 'name',
+  generationStatus: 'generationStatus'
 } as const
 
 export type TopicScalarFieldEnum = (typeof TopicScalarFieldEnum)[keyof typeof TopicScalarFieldEnum]
@@ -166,7 +167,8 @@ export const SourceScalarFieldEnum = {
   id: 'id',
   topicId: 'topicId',
   fileName: 'fileName',
-  fileType: 'fileType'
+  fileType: 'fileType',
+  storageKey: 'storageKey'
 } as const
 
 export type SourceScalarFieldEnum = (typeof SourceScalarFieldEnum)[keyof typeof SourceScalarFieldEnum]

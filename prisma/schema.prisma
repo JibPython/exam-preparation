@@ -1,16 +1,17 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 datasource db {
   provider = "postgresql"
 }
- 
+
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
 }
+
+
+// AUTH
 
 model User {
   id            String          @id @default(cuid())
@@ -21,12 +22,13 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Authenticator Authenticator[]
- 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
   courses Course[]
 }
- 
+
 model Account {
   userId            String
   type              String
@@ -39,34 +41,34 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
- 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@id([provider, providerAccountId])
 }
- 
+
 model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
- 
+
 model VerificationToken {
   identifier String
   token      String
   expires    DateTime
- 
+
   @@id([identifier, token])
 }
- 
-// Optional for WebAuthn support
+
 model Authenticator {
   credentialID         String  @unique
   userId               String
@@ -76,40 +78,55 @@ model Authenticator {
   credentialDeviceType String
   credentialBackedUp   Boolean
   transports           String?
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@id([userId, credentialID])
 }
 
+
+// APPLICATION
+
 model Course {
-    id Int @id @default(autoincrement())
-    creator User @relation(fields: [creatorId], references: [id])
-    creatorId String
-    name String
-    topics Topic[]
-  }
+  id        Int    @id @default(autoincrement())
+  creatorId String
+  name      String
+
+  creator User    @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  topics  Topic[]
+}
+
+enum GenerationStatus {
+  NOT_STARTED
+  PROCESSING
+  READY
+  FAILED
+}
 
 model Topic {
-    id Int @id @default(autoincrement())
-    course Course @relation(fields: [courseId], references: [id])
-    courseId Int
-    name String
-    sources Source[]
-    notes GeneratedNote?
-  }
+  id               Int              @id @default(autoincrement())
+  courseId         Int
+  name             String
+  generationStatus GenerationStatus @default(NOT_STARTED)
+
+  course  Course         @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  sources Source[]
+  notes   GeneratedNote?
+}
 
 model Source {
-    id Int @id @default(autoincrement())
-    topic Topic @relation(fields: [topicId], references:[id])
-    topicId Int
-    fileName String
-    fileType String
-  }
+  id         Int    @id @default(autoincrement())
+  topicId    Int
+  fileName   String
+  fileType   String
+  storageKey String
+
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+}
 
 model GeneratedNote {
-    id Int @id @default(autoincrement())
-    topic Topic @relation(fields: [topicId], references:[id])
-    topicId Int @unique
-  }
+  id      Int @id @default(autoincrement())
+  topicId Int @unique
 
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+}

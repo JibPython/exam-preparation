@@ -9,7 +9,11 @@
 * 🟢 You can import this file directly.
 */
 
+export const GenerationStatus = {
+  NOT_STARTED: 'NOT_STARTED',
+  PROCESSING: 'PROCESSING',
+  READY: 'READY',
+  FAILED: 'FAILED'
+} as const
 
-
-// This file is empty because there are no enums in the schema.
-export {}
+export type GenerationStatus = (typeof GenerationStatus)[keyof typeof GenerationStatus]

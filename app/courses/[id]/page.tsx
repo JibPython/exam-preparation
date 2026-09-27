@@ -46,7 +46,7 @@ export default async function Course({
         {topics.map((topic) => (
           <div key={topic.id}>
             <Link
-              href={`/courses/${encodeURIComponent(id)}/topic/${encodeURIComponent(topic.id)}`}
+              href={`/courses/${encodeURIComponent(id)}/topics/${encodeURIComponent(topic.id)}`}
             >
               {topic.name}
             </Link>

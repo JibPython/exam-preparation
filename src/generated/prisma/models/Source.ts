@@ -41,6 +41,7 @@ export type SourceMinAggregateOutputType = {
   topicId: number | null
   fileName: string | null
   fileType: string | null
+  storageKey: string | null
 }
 
 export type SourceMaxAggregateOutputType = {
@@ -48,6 +49,7 @@ export type SourceMaxAggregateOutputType = {
   topicId: number | null
   fileName: string | null
   fileType: string | null
+  storageKey: string | null
 }
 
 export type SourceCountAggregateOutputType = {
@@ -55,6 +57,7 @@ export type SourceCountAggregateOutputType = {
   topicId: number
   fileName: number
   fileType: number
+  storageKey: number
   _all: number
 }
 
@@ -74,6 +77,7 @@ export type SourceMinAggregateInputType = {
   topicId?: true
   fileName?: true
   fileType?: true
+  storageKey?: true
 }
 
 export type SourceMaxAggregateInputType = {
@@ -81,6 +85,7 @@ export type SourceMaxAggregateInputType = {
   topicId?: true
   fileName?: true
   fileType?: true
+  storageKey?: true
 }
 
 export type SourceCountAggregateInputType = {
@@ -88,6 +93,7 @@ export type SourceCountAggregateInputType = {
   topicId?: true
   fileName?: true
   fileType?: true
+  storageKey?: true
   _all?: true
 }
 
@@ -182,6 +188,7 @@ export type SourceGroupByOutputType = {
   topicId: number
   fileName: string
   fileType: string
+  storageKey: string
   _count: SourceCountAggregateOutputType | null
   _avg: SourceAvgAggregateOutputType | null
   _sum: SourceSumAggregateOutputType | null
@@ -212,6 +219,7 @@ export type SourceWhereInput = {
   topicId?: Prisma.IntFilter<"Source"> | number
   fileName?: Prisma.StringFilter<"Source"> | string
   fileType?: Prisma.StringFilter<"Source"> | string
+  storageKey?: Prisma.StringFilter<"Source"> | string
   topic?: Prisma.XOR<Prisma.TopicScalarRelationFilter, Prisma.TopicWhereInput>
 }
 
@@ -220,6 +228,7 @@ export type SourceOrderByWithRelationInput = {
   topicId?: Prisma.SortOrder
   fileName?: Prisma.SortOrder
   fileType?: Prisma.SortOrder
+  storageKey?: Prisma.SortOrder
   topic?: Prisma.TopicOrderByWithRelationInput
 }
 
@@ -231,6 +240,7 @@ export type SourceWhereUniqueInput = Prisma.AtLeast<{
   topicId?: Prisma.IntFilter<"Source"> | number
   fileName?: Prisma.StringFilter<"Source"> | string
   fileType?: Prisma.StringFilter<"Source"> | string
+  storageKey?: Prisma.StringFilter<"Source"> | string
   topic?: Prisma.XOR<Prisma.TopicScalarRelationFilter, Prisma.TopicWhereInput>
 }, "id">
 
@@ -239,6 +249,7 @@ export type SourceOrderByWithAggregationInput = {
   topicId?: Prisma.SortOrder
   fileName?: Prisma.SortOrder
   fileType?: Prisma.SortOrder
+  storageKey?: Prisma.SortOrder
   _count?: Prisma.SourceCountOrderByAggregateInput
   _avg?: Prisma.SourceAvgOrderByAggregateInput
   _max?: Prisma.SourceMaxOrderByAggregateInput
@@ -254,11 +265,13 @@ export type SourceScalarWhereWithAggregatesInput = {
   topicId?: Prisma.IntWithAggregatesFilter<"Source"> | number
   fileName?: Prisma.StringWithAggregatesFilter<"Source"> | string
   fileType?: Prisma.StringWithAggregatesFilter<"Source"> | string
+  storageKey?: Prisma.StringWithAggregatesFilter<"Source"> | string
 }
 
 export type SourceCreateInput = {
   fileName: string
   fileType: string
+  storageKey: string
   topic: Prisma.TopicCreateNestedOneWithoutSourcesInput
 }
 
@@ -267,11 +280,13 @@ export type SourceUncheckedCreateInput = {
   topicId: number
   fileName: string
   fileType: string
+  storageKey: string
 }
 
 export type SourceUpdateInput = {
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
   topic?: Prisma.TopicUpdateOneRequiredWithoutSourcesNestedInput
 }
 
@@ -280,6 +295,7 @@ export type SourceUncheckedUpdateInput = {
   topicId?: Prisma.IntFieldUpdateOperationsInput | number
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SourceCreateManyInput = {
@@ -287,11 +303,13 @@ export type SourceCreateManyInput = {
   topicId: number
   fileName: string
   fileType: string
+  storageKey: string
 }
 
 export type SourceUpdateManyMutationInput = {
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SourceUncheckedUpdateManyInput = {
@@ -299,6 +317,7 @@ export type SourceUncheckedUpdateManyInput = {
   topicId?: Prisma.IntFieldUpdateOperationsInput | number
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SourceListRelationFilter = {
@@ -316,6 +335,7 @@ export type SourceCountOrderByAggregateInput = {
   topicId?: Prisma.SortOrder
   fileName?: Prisma.SortOrder
   fileType?: Prisma.SortOrder
+  storageKey?: Prisma.SortOrder
 }
 
 export type SourceAvgOrderByAggregateInput = {
@@ -328,6 +348,7 @@ export type SourceMaxOrderByAggregateInput = {
   topicId?: Prisma.SortOrder
   fileName?: Prisma.SortOrder
   fileType?: Prisma.SortOrder
+  storageKey?: Prisma.SortOrder
 }
 
 export type SourceMinOrderByAggregateInput = {
@@ -335,6 +356,7 @@ export type SourceMinOrderByAggregateInput = {
   topicId?: Prisma.SortOrder
   fileName?: Prisma.SortOrder
   fileType?: Prisma.SortOrder
+  storageKey?: Prisma.SortOrder
 }
 
 export type SourceSumOrderByAggregateInput = {
@@ -387,12 +409,14 @@ export type SourceUncheckedUpdateManyWithoutTopicNestedInput = {
 export type SourceCreateWithoutTopicInput = {
   fileName: string
   fileType: string
+  storageKey: string
 }
 
 export type SourceUncheckedCreateWithoutTopicInput = {
   id?: number
   fileName: string
   fileType: string
+  storageKey: string
 }
 
 export type SourceCreateOrConnectWithoutTopicInput = {
@@ -429,29 +453,34 @@ export type SourceScalarWhereInput = {
   topicId?: Prisma.IntFilter<"Source"> | number
   fileName?: Prisma.StringFilter<"Source"> | string
   fileType?: Prisma.StringFilter<"Source"> | string
+  storageKey?: Prisma.StringFilter<"Source"> | string
 }
 
 export type SourceCreateManyTopicInput = {
   id?: number
   fileName: string
   fileType: string
+  storageKey: string
 }
 
 export type SourceUpdateWithoutTopicInput = {
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SourceUncheckedUpdateWithoutTopicInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SourceUncheckedUpdateManyWithoutTopicInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -461,6 +490,7 @@ export type SourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   topicId?: boolean
   fileName?: boolean
   fileType?: boolean
+  storageKey?: boolean
   topic?: boolean | Prisma.TopicDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["source"]>
 
@@ -469,6 +499,7 @@ export type SourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   topicId?: boolean
   fileName?: boolean
   fileType?: boolean
+  storageKey?: boolean
   topic?: boolean | Prisma.TopicDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["source"]>
 
@@ -477,6 +508,7 @@ export type SourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   topicId?: boolean
   fileName?: boolean
   fileType?: boolean
+  storageKey?: boolean
   topic?: boolean | Prisma.TopicDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["source"]>
 
@@ -485,9 +517,10 @@ export type SourceSelectScalar = {
   topicId?: boolean
   fileName?: boolean
   fileType?: boolean
+  storageKey?: boolean
 }
 
-export type SourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "topicId" | "fileName" | "fileType", ExtArgs["result"]["source"]>
+export type SourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "topicId" | "fileName" | "fileType" | "storageKey", ExtArgs["result"]["source"]>
 export type SourceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   topic?: boolean | Prisma.TopicDefaultArgs<ExtArgs>
 }
@@ -508,6 +541,7 @@ export type $SourcePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     topicId: number
     fileName: string
     fileType: string
+    storageKey: string
   }, ExtArgs["result"]["source"]>
   composites: {}
 }
@@ -936,6 +970,7 @@ export interface SourceFieldRefs {
   readonly topicId: Prisma.FieldRef<"Source", 'Int'>
   readonly fileName: Prisma.FieldRef<"Source", 'String'>
   readonly fileType: Prisma.FieldRef<"Source", 'String'>
+  readonly storageKey: Prisma.FieldRef<"Source", 'String'>
 }
     
 
