@@ -39,16 +39,25 @@ export type GeneratedNoteSumAggregateOutputType = {
 export type GeneratedNoteMinAggregateOutputType = {
   id: number | null
   topicId: number | null
+  content: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type GeneratedNoteMaxAggregateOutputType = {
   id: number | null
   topicId: number | null
+  content: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type GeneratedNoteCountAggregateOutputType = {
   id: number
   topicId: number
+  content: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -66,16 +75,25 @@ export type GeneratedNoteSumAggregateInputType = {
 export type GeneratedNoteMinAggregateInputType = {
   id?: true
   topicId?: true
+  content?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type GeneratedNoteMaxAggregateInputType = {
   id?: true
   topicId?: true
+  content?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type GeneratedNoteCountAggregateInputType = {
   id?: true
   topicId?: true
+  content?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -168,6 +186,9 @@ export type GeneratedNoteGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type GeneratedNoteGroupByOutputType = {
   id: number
   topicId: number
+  content: string
+  createdAt: Date
+  updatedAt: Date
   _count: GeneratedNoteCountAggregateOutputType | null
   _avg: GeneratedNoteAvgAggregateOutputType | null
   _sum: GeneratedNoteSumAggregateOutputType | null
@@ -196,12 +217,18 @@ export type GeneratedNoteWhereInput = {
   NOT?: Prisma.GeneratedNoteWhereInput | Prisma.GeneratedNoteWhereInput[]
   id?: Prisma.IntFilter<"GeneratedNote"> | number
   topicId?: Prisma.IntFilter<"GeneratedNote"> | number
+  content?: Prisma.StringFilter<"GeneratedNote"> | string
+  createdAt?: Prisma.DateTimeFilter<"GeneratedNote"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"GeneratedNote"> | Date | string
   topic?: Prisma.XOR<Prisma.TopicScalarRelationFilter, Prisma.TopicWhereInput>
 }
 
 export type GeneratedNoteOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   topicId?: Prisma.SortOrder
+  content?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   topic?: Prisma.TopicOrderByWithRelationInput
 }
 
@@ -211,12 +238,18 @@ export type GeneratedNoteWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.GeneratedNoteWhereInput | Prisma.GeneratedNoteWhereInput[]
   OR?: Prisma.GeneratedNoteWhereInput[]
   NOT?: Prisma.GeneratedNoteWhereInput | Prisma.GeneratedNoteWhereInput[]
+  content?: Prisma.StringFilter<"GeneratedNote"> | string
+  createdAt?: Prisma.DateTimeFilter<"GeneratedNote"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"GeneratedNote"> | Date | string
   topic?: Prisma.XOR<Prisma.TopicScalarRelationFilter, Prisma.TopicWhereInput>
 }, "id" | "topicId">
 
 export type GeneratedNoteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   topicId?: Prisma.SortOrder
+  content?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.GeneratedNoteCountOrderByAggregateInput
   _avg?: Prisma.GeneratedNoteAvgOrderByAggregateInput
   _max?: Prisma.GeneratedNoteMaxOrderByAggregateInput
@@ -230,38 +263,61 @@ export type GeneratedNoteScalarWhereWithAggregatesInput = {
   NOT?: Prisma.GeneratedNoteScalarWhereWithAggregatesInput | Prisma.GeneratedNoteScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"GeneratedNote"> | number
   topicId?: Prisma.IntWithAggregatesFilter<"GeneratedNote"> | number
+  content?: Prisma.StringWithAggregatesFilter<"GeneratedNote"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"GeneratedNote"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"GeneratedNote"> | Date | string
 }
 
 export type GeneratedNoteCreateInput = {
+  content: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
   topic: Prisma.TopicCreateNestedOneWithoutNotesInput
 }
 
 export type GeneratedNoteUncheckedCreateInput = {
   id?: number
   topicId: number
+  content: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type GeneratedNoteUpdateInput = {
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   topic?: Prisma.TopicUpdateOneRequiredWithoutNotesNestedInput
 }
 
 export type GeneratedNoteUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   topicId?: Prisma.IntFieldUpdateOperationsInput | number
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GeneratedNoteCreateManyInput = {
   id?: number
   topicId: number
+  content: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type GeneratedNoteUpdateManyMutationInput = {
-
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GeneratedNoteUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   topicId?: Prisma.IntFieldUpdateOperationsInput | number
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GeneratedNoteNullableScalarRelationFilter = {
@@ -272,6 +328,9 @@ export type GeneratedNoteNullableScalarRelationFilter = {
 export type GeneratedNoteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   topicId?: Prisma.SortOrder
+  content?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type GeneratedNoteAvgOrderByAggregateInput = {
@@ -282,11 +341,17 @@ export type GeneratedNoteAvgOrderByAggregateInput = {
 export type GeneratedNoteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   topicId?: Prisma.SortOrder
+  content?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type GeneratedNoteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   topicId?: Prisma.SortOrder
+  content?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type GeneratedNoteSumOrderByAggregateInput = {
@@ -327,11 +392,16 @@ export type GeneratedNoteUncheckedUpdateOneWithoutTopicNestedInput = {
 }
 
 export type GeneratedNoteCreateWithoutTopicInput = {
-
+  content: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type GeneratedNoteUncheckedCreateWithoutTopicInput = {
   id?: number
+  content: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type GeneratedNoteCreateOrConnectWithoutTopicInput = {
@@ -351,11 +421,16 @@ export type GeneratedNoteUpdateToOneWithWhereWithoutTopicInput = {
 }
 
 export type GeneratedNoteUpdateWithoutTopicInput = {
-
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type GeneratedNoteUncheckedUpdateWithoutTopicInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -363,27 +438,39 @@ export type GeneratedNoteUncheckedUpdateWithoutTopicInput = {
 export type GeneratedNoteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   topicId?: boolean
+  content?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   topic?: boolean | Prisma.TopicDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["generatedNote"]>
 
 export type GeneratedNoteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   topicId?: boolean
+  content?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   topic?: boolean | Prisma.TopicDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["generatedNote"]>
 
 export type GeneratedNoteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   topicId?: boolean
+  content?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   topic?: boolean | Prisma.TopicDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["generatedNote"]>
 
 export type GeneratedNoteSelectScalar = {
   id?: boolean
   topicId?: boolean
+  content?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type GeneratedNoteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "topicId", ExtArgs["result"]["generatedNote"]>
+export type GeneratedNoteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "topicId" | "content" | "createdAt" | "updatedAt", ExtArgs["result"]["generatedNote"]>
 export type GeneratedNoteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   topic?: boolean | Prisma.TopicDefaultArgs<ExtArgs>
 }
@@ -402,6 +489,9 @@ export type $GeneratedNotePayload<ExtArgs extends runtime.Types.Extensions.Inter
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     topicId: number
+    content: string
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["generatedNote"]>
   composites: {}
 }
@@ -828,6 +918,9 @@ export interface Prisma__GeneratedNoteClient<T, Null = never, ExtArgs extends ru
 export interface GeneratedNoteFieldRefs {
   readonly id: Prisma.FieldRef<"GeneratedNote", 'Int'>
   readonly topicId: Prisma.FieldRef<"GeneratedNote", 'Int'>
+  readonly content: Prisma.FieldRef<"GeneratedNote", 'String'>
+  readonly createdAt: Prisma.FieldRef<"GeneratedNote", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"GeneratedNote", 'DateTime'>
 }
     
 

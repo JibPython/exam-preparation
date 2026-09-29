@@ -4,9 +4,13 @@ import { r2 } from "@/lib/r2";
 import {
   verifyTopicOwnership,
   createSource,
+  startTopicProcessing,
   setTopicGenerationStatus,
 } from "@/lib/dal";
+import { tasks } from "@trigger.dev/sdk";
+import type { generateNotes } from "@/src/trigger/generate-notes";
 import { revalidatePath } from "next/cache";
+import { getSourceFormat, MAX_SOURCE_BYTES, SOURCE_ACCEPT, validateSourceBytes } from "@/lib/source-formats";
 
 type TopicSetupProps = {
   topic: {
@@ -29,22 +33,18 @@ export default function TopicSetup({ topic, courseId }: TopicSetupProps) {
       throw new Error("No file provided");
     }
 
-    if (file.type !== "application/pdf") {
-      throw new Error("Only PDF files are supported");
-    }
-
-    const maxSize = 10 * 1024 * 1024;
-
-    if (file.size > maxSize) {
-      throw new Error("PDF must be 10 MB or smaller");
+    const format = getSourceFormat(file.name, file.type);
+    if (!file.size || file.size > MAX_SOURCE_BYTES) {
+      throw new Error("Source must be non-empty and 10 MB or smaller.");
     }
 
     const fileName = file.name;
-    const fileType = file.type;
+    const fileType = format.mimeType;
 
     const fileBuffer = Buffer.from(await file.arrayBuffer());
+    validateSourceBytes(fileBuffer, format);
 
-    const storageKey = `sources/topics/${topicId}/${randomUUID()}.pdf`;
+    const storageKey = `sources/topics/${topicId}/${randomUUID()}.${format.extension}`;
 
     await r2.send(
       new PutObjectCommand({
@@ -55,15 +55,31 @@ export default function TopicSetup({ topic, courseId }: TopicSetupProps) {
       }),
     );
 
-    await createSource({
+    const source = await createSource({
       topicId,
       fileName,
       fileType,
       storageKey,
     });
 
-    await setTopicGenerationStatus(topicId, "PROCESSING");
-
+    try {
+      await startTopicProcessing(topicId);
+      await tasks.trigger<typeof generateNotes>("generate-notes", {
+        topicId,
+        sourceId: source.id,
+      }, {
+        idempotencyKey: `generate-notes:${source.id}`,
+        concurrencyKey: `topic:${topicId}`,
+      });
+    } catch {
+      try {
+        await setTopicGenerationStatus(topicId, "FAILED");
+      } catch {
+        throw new Error("Could not queue note generation or update its failure status.");
+      }
+      revalidatePath(`/courses/${courseId}/topics/${topicId}`);
+      throw new Error("Could not queue note generation. Please try again later.");
+    }
     revalidatePath(`/courses/${courseId}/topics/${topicId}`);
   }
 
@@ -73,10 +89,11 @@ export default function TopicSetup({ topic, courseId }: TopicSetupProps) {
         <h1 className="underline">{topic.name}</h1>
 
         <p>Upload source material to generate your notes.</p>
+        <p>PDF, PPTX, DOCX, PNG, JPEG, WebP, TXT or Markdown. One file, up to 10 MB.</p>
         <form action={uploadSourceAction.bind(null, topic.id)}>
-          <input type="file" name="source" accept="application/pdf" required />
+          <input type="file" name="source" accept={SOURCE_ACCEPT} required />
 
-          <button type="submit">Upload PDF</button>
+          <button type="submit">Upload source material</button>
         </form>
       </main>
     </div>

@@ -17,3 +17,17 @@ export const GenerationStatus = {
 } as const
 
 export type GenerationStatus = (typeof GenerationStatus)[keyof typeof GenerationStatus]
+
+
+export const ProcessingStage = {
+  READING_SOURCE: 'READING_SOURCE',
+  ORGANISING_TOPICS: 'ORGANISING_TOPICS',
+  GATHERING_CONTENT: 'GATHERING_CONTENT',
+  CONDENSING_NOTES: 'CONDENSING_NOTES',
+  CHECKING_COVERAGE: 'CHECKING_COVERAGE',
+  CORRECTING_NOTES: 'CORRECTING_NOTES',
+  CHECKING_STYLE: 'CHECKING_STYLE',
+  FINALISING: 'FINALISING'
+} as const
+
+export type ProcessingStage = (typeof ProcessingStage)[keyof typeof ProcessingStage]

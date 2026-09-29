@@ -1209,7 +1209,8 @@ export const TopicScalarFieldEnum = {
   id: 'id',
   courseId: 'courseId',
   name: 'name',
-  generationStatus: 'generationStatus'
+  generationStatus: 'generationStatus',
+  processingStage: 'processingStage'
 } as const
 
 export type TopicScalarFieldEnum = (typeof TopicScalarFieldEnum)[keyof typeof TopicScalarFieldEnum]
@@ -1228,7 +1229,10 @@ export type SourceScalarFieldEnum = (typeof SourceScalarFieldEnum)[keyof typeof 
 
 export const GeneratedNoteScalarFieldEnum = {
   id: 'id',
-  topicId: 'topicId'
+  topicId: 'topicId',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type GeneratedNoteScalarFieldEnum = (typeof GeneratedNoteScalarFieldEnum)[keyof typeof GeneratedNoteScalarFieldEnum]
@@ -1324,6 +1328,20 @@ export type EnumGenerationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'GenerationStatus[]'
  */
 export type ListEnumGenerationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GenerationStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ProcessingStage'
+ */
+export type EnumProcessingStageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessingStage'>
+    
+
+
+/**
+ * Reference to a field of type 'ProcessingStage[]'
+ */
+export type ListEnumProcessingStageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProcessingStage[]'>
     
 
 

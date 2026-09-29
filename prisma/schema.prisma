@@ -103,11 +103,23 @@ enum GenerationStatus {
   FAILED
 }
 
+enum ProcessingStage {
+  READING_SOURCE
+  ORGANISING_TOPICS
+  GATHERING_CONTENT
+  CONDENSING_NOTES
+  CHECKING_COVERAGE
+  CORRECTING_NOTES
+  CHECKING_STYLE
+  FINALISING
+}
+
 model Topic {
   id               Int              @id @default(autoincrement())
   courseId         Int
   name             String
   generationStatus GenerationStatus @default(NOT_STARTED)
+  processingStage  ProcessingStage?
 
   course  Course         @relation(fields: [courseId], references: [id], onDelete: Cascade)
   sources Source[]
@@ -125,8 +137,10 @@ model Source {
 }
 
 model GeneratedNote {
-  id      Int @id @default(autoincrement())
-  topicId Int @unique
-
+  id        Int      @id @default(autoincrement())
+  topicId   Int      @unique
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
 }

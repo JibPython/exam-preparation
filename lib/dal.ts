@@ -169,6 +169,8 @@ export const getTopic = cache(async (courseId: number, topicId: number) => {
       id: true,
       name: true,
       generationStatus: true,
+      processingStage: true,
+      notes: { select: { content: true } },
     },
   });
 });
@@ -234,6 +236,21 @@ export async function setTopicGenerationStatus(
     },
     data: {
       generationStatus: status,
+      processingStage: status === "PROCESSING" ? "READING_SOURCE" : null,
+    },
+  });
+}
+
+export async function startTopicProcessing(topicId: number) {
+  const topic = await verifyTopicOwnership(topicId);
+
+  return prisma.topic.update({
+    where: {
+      id: topic.id,
+    },
+    data: {
+      generationStatus: "PROCESSING",
+      processingStage: "READING_SOURCE",
     },
   });
 }
